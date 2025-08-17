@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
+import Body from "./Components/Body";
 
 function App() {
   return (
     <>
-      <div className="text-3xl text-green-300 bg-red-50 font-bold underline">
-        Welcome to the BroadTube - where you can freely stream entertainment
+      <div className="bg-gray-900 h-screen">
+        <Body />
       </div>
     </>
   );
