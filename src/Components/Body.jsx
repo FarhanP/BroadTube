@@ -12,7 +12,7 @@ const Body = () => {
     { path: "/browse", element: <Browse /> },
   ]);
   return (
-    <div className="h-screen">
+    <div className="">
       <RouterProvider router={browserRouter} />
     </div>
   );
