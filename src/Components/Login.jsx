@@ -1,6 +1,15 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { checkValidation } from "../Utils/Validate";
+import { auth } from "../Utils/Firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../Utils/userSlice";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -8,6 +17,8 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSign = () => {
     const validationError = checkValidation(
@@ -16,6 +27,66 @@ const Login = () => {
       password.current.value
     );
     setErrorMessage(validationError);
+    if (validationError) return;
+
+    // handling the sign-in or sign-up logic
+    if (!isSignedIn) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current?.value,
+        password.current?.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  name: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
+          console.log("User signed up:", user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Error signing up:", errorCode, errorMessage);
+          setErrorMessage(errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/browse");
+          console.log("User signed in:", user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Error signing in:", errorCode, errorMessage);
+          setErrorMessage(errorMessage);
+        });
+    }
   };
 
   const toggleSignIn = () => {
@@ -63,7 +134,7 @@ const Login = () => {
               <p className="text-red-400 text-sm">{errorMessage}</p>
             )}
             <button
-              className="bg-red-400 p-3 cursor-pointer"
+              className="bg-red-400 font-bold p-3 cursor-pointer"
               onClick={handleSign}
               type="button"
             >
