@@ -90,7 +90,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-15">
       <Header />
       <div className="flex items-center justify-center pt-20">
         <form className="border border-gray-700 bg-gray-800 px-8 py-4 rounded-lg shadow-lg">

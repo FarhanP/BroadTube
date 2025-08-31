@@ -7,7 +7,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faWandSparkles } from "@fortawesome/free-solid-svg-icons";
+import { toggleGptResults } from "../Utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -45,12 +46,29 @@ const Header = () => {
       });
   };
 
+  const handleGPTSearch = () => {
+    dispatch(toggleGptResults());
+  };
+
   return (
     <div className="flex justify-start items-center gap-0.5 px-4 py-4">
       <img className="w-9 h-9" src={playButton} alt="Play button logo" />
       <h1 className="text-emerald-500 text-3xl">broadTube</h1>
       {user && (
         <div className="flex items-center gap-0 ml-auto">
+          <div className="flex">
+            <button
+              onClick={handleGPTSearch}
+              className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-6 py-1 mr-7 rounded-lg max-h-10 text-md bg-red-400"
+            >
+              <FontAwesomeIcon
+                size="md"
+                icon={faWandSparkles}
+                className="text-white py-2"
+              />
+              <span className="font-bold">AI Search</span>
+            </button>
+          </div>
           <FontAwesomeIcon
             size="xl"
             icon={faUser}
