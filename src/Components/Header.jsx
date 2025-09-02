@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import playButton from "../assets/play-button.png";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
@@ -11,13 +11,48 @@ import {
   faUser,
   faWandSparkles,
   faHome,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { toggleGptResults } from "../Utils/gptSlice";
+
+const NavButtons = ({ showGptSearch, handleGPTSearch }) => (
+  <div className="flex items-center justify-center border-2 bg-red-400 rounded-lg py-1">
+    <button
+      onClick={handleGPTSearch}
+      className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-4 sm:px-6 py-2 sm:py-1 mr-5 sm:mr-7 rounded-lg max-h-10 text-lg sm:text-md"
+    >
+      {!showGptSearch ? (
+        <FontAwesomeIcon
+          size="md"
+          icon={faWandSparkles}
+          className="text-white"
+        />
+      ) : (
+        <FontAwesomeIcon size="md" icon={faHome} className="text-white" />
+      )}
+      <span className="font-bold">{!showGptSearch ? "AI Search" : "Home"}</span>
+    </button>
+  </div>
+);
+
+const UserInfo = ({ handleSignOut }) => (
+  <div className="flex items-center justify-center border-2 border-emerald-500 rounded-lg py-1">
+    <FontAwesomeIcon size="lg" icon={faUser} className="text-red-400" />
+    <button
+      onClick={handleSignOut}
+      type="button"
+      className="text-lg sm:text-md max-h-10 font-bold cursor-pointer text-red-400 p-2 sm:ml-auto"
+    >
+      Sign out
+    </button>
+  </div>
+);
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const [hideBurgerMenu, setHideBurgerMenu] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,51 +86,57 @@ const Header = () => {
       });
   };
 
+  const toggleBurgerMenu = () => {
+    setHideBurgerMenu(!hideBurgerMenu);
+  };
+
   const handleGPTSearch = () => {
     dispatch(toggleGptResults());
+    setHideBurgerMenu(false);
   };
 
   return (
-    <div className="flex justify-start items-center gap-0.5 px-4 py-4">
-      <img className="w-9 h-9" src={playButton} alt="Play button logo" />
+    <div className="flex container mx-auto justify-start items-center gap-0.5 px-4 py-4">
+      <img className="w-9 sm:h-9" src={playButton} alt="Play button logo" />
       <h1 className="text-emerald-500 text-3xl">broadTube</h1>
       {user && (
-        <div className="flex items-center gap-0 ml-auto">
-          <div className="flex">
-            <button
-              onClick={handleGPTSearch}
-              className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-6 py-1 mr-7 rounded-lg max-h-10 text-md bg-red-400"
-            >
-              {!showGptSearch ? (
-                <FontAwesomeIcon
-                  size="md"
-                  icon={faWandSparkles}
-                  className="text-white"
-                />
-              ) : (
-                <FontAwesomeIcon
-                  size="md"
-                  icon={faHome}
-                  className="text-white"
-                />
-              )}
-              <span className="font-bold">
-                {!showGptSearch ? "AI Search" : "Home"}
-              </span>
-            </button>
+        <div className="flex items-center sm:gap-0 ml-auto">
+          <div className="sm:hidden">
+            <FontAwesomeIcon
+              size="xl"
+              type="button"
+              icon={faBars}
+              className="text-emerald-400"
+              onClick={toggleBurgerMenu}
+            />
+            {hideBurgerMenu && (
+              <>
+                <div
+                  onClick={toggleBurgerMenu}
+                  type="button"
+                  className="absolute z-50 h-screen inset-0 bg-gray-500 opacity-70 flex items-center justify-center"
+                ></div>
+                <div className="absolute bg-gray-900 z-52 right-0 top-0 left-20 h-screen">
+                  <div className="m-4 p-4 pt-10 flex justify-center flex-col gap-8">
+                    <NavButtons
+                      showGptSearch={showGptSearch}
+                      handleGPTSearch={handleGPTSearch}
+                    />
+                    <UserInfo handleSignOut={handleSignOut} />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
-          <FontAwesomeIcon
-            size="xl"
-            icon={faUser}
-            className="text-emerald-500 py-2 "
-          />
-          <button
-            onClick={handleSignOut}
-            type="button"
-            className="text-xl max-h-10 font-bold cursor-pointer text-red-400 p-2 ml-auto"
-          >
-            Sign out
-          </button>
+          <div className="hidden sm:flex">
+            <NavButtons
+              showGptSearch={showGptSearch}
+              handleGPTSearch={handleGPTSearch}
+            />
+          </div>
+          <div className="hidden sm:flex">
+            <UserInfo handleSignOut={handleSignOut} />
+          </div>
         </div>
       )}
     </div>
