@@ -5,10 +5,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { checkValidation } from "../Utils/validate";
-import { auth } from "../Utils/firebase";
+import { checkValidation } from "../utils/validate";
+import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../Utils/userSlice";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);

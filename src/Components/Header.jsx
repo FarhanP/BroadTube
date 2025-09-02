@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import playButton from "../assets/play-button.png";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../Utils/firebase";
+import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../Utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -13,7 +13,7 @@ import {
   faHome,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { toggleGptResults } from "../Utils/gptSlice";
+import { toggleGptResults } from "../utils/gptSlice";
 
 const NavButtons = ({ showGptSearch, handleGPTSearch }) => (
   <div className="flex items-center justify-center border-2 bg-red-400 rounded-lg py-1">
