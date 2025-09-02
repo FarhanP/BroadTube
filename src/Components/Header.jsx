@@ -19,7 +19,7 @@ const NavButtons = ({ showGptSearch, handleGPTSearch }) => (
   <div className="flex items-center justify-center border-2 bg-red-400 rounded-lg py-1">
     <button
       onClick={handleGPTSearch}
-      className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-4 sm:px-6 py-2 sm:py-1 mr-5 sm:mr-7 rounded-lg max-h-10 text-lg sm:text-md"
+      className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-4 sm:px-6 py-2 sm:py-1 mr-5 sm:mr-0 rounded-lg max-h-10 text-lg sm:text-md"
     >
       {!showGptSearch ? (
         <FontAwesomeIcon
@@ -37,13 +37,13 @@ const NavButtons = ({ showGptSearch, handleGPTSearch }) => (
 
 const UserInfo = ({ handleSignOut }) => (
   <div className="flex items-center justify-center border-2 border-emerald-500 rounded-lg py-1">
-    <FontAwesomeIcon size="lg" icon={faUser} className="text-red-400" />
     <button
       onClick={handleSignOut}
       type="button"
-      className="text-lg sm:text-md max-h-10 font-bold cursor-pointer text-red-400 p-2 sm:ml-auto"
+      className="text-lg flex gap-2 items-center sm:text-md max-h-10 font-bold cursor-pointer text-red-400 sm:px-6 py-2 sm:py-1 px-4 sm:ml-auto"
     >
-      Sign out
+      <FontAwesomeIcon size="md" icon={faUser} className="text-red-400" />
+      <div className="font-bold sm:max-h-6.5">Sign out</div>
     </button>
   </div>
 );
@@ -97,10 +97,15 @@ const Header = () => {
 
   return (
     <div className="flex container mx-auto justify-start items-center gap-0.5 px-4 py-4">
-      <img className="w-9 sm:h-9" src={playButton} alt="Play button logo" />
-      <h1 className="text-emerald-500 text-3xl">broadTube</h1>
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => navigate("/browse")}
+      >
+        <img className="w-9 sm:h-9" src={playButton} alt="Play button logo" />
+        <h1 className="text-emerald-400 text-3xl">broadTube</h1>
+      </div>
       {user && (
-        <div className="flex items-center sm:gap-0 ml-auto">
+        <div className="flex items-center sm:gap-6 ml-auto">
           <div className="sm:hidden">
             <FontAwesomeIcon
               size="xl"
