@@ -7,12 +7,17 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faWandSparkles } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faWandSparkles,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 import { toggleGptResults } from "../Utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,12 +66,22 @@ const Header = () => {
               onClick={handleGPTSearch}
               className="text-white hover:opacity-90 cursor-pointer gap-2 flex items-center px-6 py-1 mr-7 rounded-lg max-h-10 text-md bg-red-400"
             >
-              <FontAwesomeIcon
-                size="md"
-                icon={faWandSparkles}
-                className="text-white py-2"
-              />
-              <span className="font-bold">AI Search</span>
+              {!showGptSearch ? (
+                <FontAwesomeIcon
+                  size="md"
+                  icon={faWandSparkles}
+                  className="text-white"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  size="md"
+                  icon={faHome}
+                  className="text-white"
+                />
+              )}
+              <span className="font-bold">
+                {!showGptSearch ? "AI Search" : "Home"}
+              </span>
             </button>
           </div>
           <FontAwesomeIcon
