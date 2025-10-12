@@ -9,6 +9,8 @@ const GptsearchBar = () => {
   const dispatch = useDispatch();
   const [aiResponseErr, setAiResponseErr] = useState(false);
 
+  const mediaQuery = window.matchMedia("(max-width: 640px)"); // Tailwind's 'sm' breakpoint
+
   const handleGptSearch = async () => {
     const value = searchText.current.value;
     console.log("Searching for:", value);
@@ -69,8 +71,12 @@ const GptsearchBar = () => {
           type="text"
           name="gptsearch"
           autoComplete="on"
-          className="p-4 bg-white max-h-10  sm:min-w-150 rounded-md"
-          placeholder="Find your movie suggestions with the help of AI"
+          className="p-4 bg-white max-h-10 sm:min-w-150 rounded-md"
+          placeholder={`${
+            mediaQuery.matches
+              ? "Find Movies with AI"
+              : "Find your favourtie Movies using AI"
+          }`}
         />
         <button
           onClick={handleGptSearch}

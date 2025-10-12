@@ -116,13 +116,15 @@ const Header = () => {
             />
             {hideBurgerMenu && (
               <>
+                {/* Overlay */}
                 <div
                   onClick={toggleBurgerMenu}
-                  type="button"
-                  className="absolute z-50 h-screen inset-0 bg-gray-500 opacity-70 flex items-center justify-center"
+                  className="fixed inset-0 bg-gray-500 bg-opacity-70 z-50 animate-fadeIn"
                 ></div>
-                <div className="absolute bg-gray-900 z-52 right-0 top-0 left-20 h-screen">
-                  <div className="m-4 p-4 pt-10 flex justify-center flex-col gap-8">
+
+                {/* Sidebar */}
+                <div className="fixed top-0 right-0 left-20 h-screen bg-gray-900 z-52 animate-slideIn">
+                  <div className="m-4 p-4 pt-10 flex flex-col gap-8 justify-center">
                     <NavButtons
                       showGptSearch={showGptSearch}
                       handleGPTSearch={handleGPTSearch}

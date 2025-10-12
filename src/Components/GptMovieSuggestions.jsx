@@ -9,13 +9,13 @@ const GptMovieSuggestions = () => {
 
   if (!gptMovieNames) {
     return (
-      <div className="flex flex-col justify-center items-center gap-10 text-white text-5xl">
+      <div className="flex flex-col justify-center items-center gap-10 text-white sm:text-5xl text-3xl">
         <FontAwesomeIcon
-          size="2x"
+          size="1x"
           icon={faSearch}
-          className="text-red-400 py-2 "
+          className="text-red-400 py-2"
         />
-        <p> AI could not find your results!</p>
+        <p className="text-center">No resuts found yet!</p>
       </div>
     );
   }

@@ -93,14 +93,14 @@ const Login = () => {
     <div className="flex flex-col gap-15">
       <Header />
       <div className="flex items-center justify-center pt-20">
-        <form className="border border-gray-700 bg-gray-800 px-8 py-4 rounded-lg shadow-lg">
-          <div className="flex min-w-sm max-w-sm flex-col gap-8 mx-4 my-8">
+        <form className="border border-gray-700 bg-gray-800 sm:px-8 px-4 sm:py-4 py-2 rounded-lg shadow-lg">
+          <div className="flex sm:min-w-sm min-w-xs max-w-xs sm:max-w-sm flex-col gap-8 mx-4 my-8">
             <h2 className="text-white text-3xl text-center">
               {isSignedIn ? " Sign In" : "Sign Up"}
             </h2>
             {!isSignedIn && (
               <input
-                className="bg-white px-3 py-3"
+                className="bg-white rounded-md px-3 py-3"
                 name="fullName"
                 ref={name}
                 type="text"
@@ -110,7 +110,7 @@ const Login = () => {
               />
             )}
             <input
-              className="bg-white px-3 py-3"
+              className="bg-white rounded-md px-3 py-3"
               ref={email}
               name="email"
               type="email"
@@ -120,7 +120,7 @@ const Login = () => {
             <input
               name="password"
               ref={password}
-              className="bg-white px-3 py-3"
+              className="bg-white rounded-md px-3 py-3"
               type="password"
               placeholder="Password"
               autoComplete="true"
