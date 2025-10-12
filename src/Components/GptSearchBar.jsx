@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import ai from "../utils/Gemini";
+import ai from "../utils/gemini";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
