@@ -13,7 +13,7 @@ import {
   faHome,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { toggleGptResults } from "../Utils/GptSlice";
+import { toggleGptResults } from "../Utils/gptSlice";
 
 const NavButtons = ({ showGptSearch, handleGPTSearch }) => (
   <div className="flex items-center justify-center border-2 bg-red-400 rounded-lg py-1">
