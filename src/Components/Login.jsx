@@ -6,7 +6,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { checkValidation } from "../utils/Validate.js";
-import { auth } from "../utils/firebase.js";
+import { auth } from "../utils/Firebase.js";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
 
