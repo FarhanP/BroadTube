@@ -1,5 +1,5 @@
 import React from "react";
-import { POSTER_BASE_URL } from "../Utils/constants";
+import { POSTER_BASE_URL } from "../utils/constants";
 
 const MovieCard = ({ title, poster }) => {
   if (!poster) return null;

@@ -1,5 +1,5 @@
 import React from "react";
-import { API_OPTIONS } from "../Utils/constants";
+import { API_OPTIONS } from "../utils/constants";
 import { useSelector } from "react-redux";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 
