@@ -6,7 +6,7 @@ import SecondaryContainer from "./SecondaryContainer.jsx";
 import { usePopularMovies } from "../hooks/usePopularMovies.js";
 import { useUpcoming } from "../hooks/useUpcoming.js";
 import { useSelector } from "react-redux";
-import GptSearch from "./GptSearch.jsx";
+import GptSearch from "./Components/GptSearch.jsx";
 
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
