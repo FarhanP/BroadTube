@@ -1,4 +1,5 @@
-import GptsearchBar from "./GptsearchBar";
+import React from "react";
+import GptsearchBar from "./GptSearchBar";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 
 const GptSearch = () => {
