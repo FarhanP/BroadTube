@@ -6,9 +6,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { checkValidation } from "../utils/Validate.js";
-import { auth } from "../Utils/firebase";
+import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../Utils/userSlice";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
