@@ -2,7 +2,7 @@
 
 // const client = new OpenAI({
 //   // baseURL: "https://router.huggingface.co/v1",
-//   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+//   apiKey: import.meta.env.VITE_OPENAI_API,
 //   dangerouslyAllowBrowser: true,
 // });
 import { GoogleGenAI } from "@google/genai";

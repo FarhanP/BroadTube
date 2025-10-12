@@ -3,7 +3,7 @@ export const config = {
 };
 
 export default async function handler(req) {
-  const TMDB_KEY = process.env.TMDB_API_KEY;
+  const TMDB_KEY = process.env.TMDB_API;
 
   if (!TMDB_KEY) {
     return new Response(JSON.stringify({ error: "TMDB key not set" }), {
