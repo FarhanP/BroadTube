@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
+import Header from "./Header.jsx";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
 import { checkValidation } from "../utils/Validate.js";
 import { auth } from "../utils/firebase.js";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
