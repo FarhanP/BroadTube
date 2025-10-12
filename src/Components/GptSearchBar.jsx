@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import ai from "../utils/Gemini";
-import { API_OPTIONS } from "../utils/constants";
+import ai from "../Utils/Gemini";
+import { API_OPTIONS } from "../Utils/constants";
 import { useDispatch } from "react-redux";
-import { addGptMovies } from "../utils/gptSlice";
+import { addGptMovies } from "../Utils/gptSlice";
 
 const GptsearchBar = () => {
   const searchText = useRef(null);

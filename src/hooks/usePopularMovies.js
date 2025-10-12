@@ -1,6 +1,6 @@
-import { API_OPTIONS } from "../utils/constants";
+import { API_OPTIONS } from "../Utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addPopularMovies } from "../utils/movieSlice";
+import { addPopularMovies } from "../Utils/movieSlice";
 import { useEffect } from "react";
 
 export const usePopularMovies = () => {
