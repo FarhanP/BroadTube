@@ -14,7 +14,7 @@ const Browse = () => {
   usePopularMovies();
   useUpcoming();
   return (
-    <div className="relative">
+    <div className="relative min-h-[calc(100svh-66px)]">
       <Header />
       {showGptSearch ? (
         <GptSearch />

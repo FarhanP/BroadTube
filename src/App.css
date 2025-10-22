@@ -6,7 +6,8 @@
 
 html,
 body {
-  @apply min-h-screen bg-gray-900;
+  @apply bg-gray-900;
+  min-height: 100svh;
 }
 
 @layer utilities {

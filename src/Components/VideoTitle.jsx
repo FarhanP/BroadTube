@@ -8,7 +8,7 @@ const VideoTitle = ({ title, overview }) => {
       <h1 className="font-bold sm:mb-0 mb-3 text-emerald-500 text-2xl sm:text-5xl">
         {title}
       </h1>
-      <p className="sm:py-6 mb-5 sm:mb-0 w-80  leading-normal line-clamp-4  sm:w-2/4">
+      <p className="sm:py-6 mb-5 text-sm sm:text-[16px] w-80  leading-normal line-clamp-4  sm:w-2/4">
         {overview}
       </p>
       <div className="flex gap-4">
