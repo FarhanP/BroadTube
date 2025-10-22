@@ -141,12 +141,13 @@ const Login = () => {
             <p className="text-white cursor-pointer" onClick={toggleSignIn}>
               {isSignedIn ? (
                 <>
-                  New to BroadTube? <span className="font-bold">Sign Up</span>
+                  New to BroadTube?{" "}
+                  <span className="font-bold text-emerald-400">Sign Up</span>
                 </>
               ) : (
                 <>
                   Already have an account?{" "}
-                  <span className="font-bold">Sign In</span>
+                  <span className="font-bold text-emerald-400">Sign In</span>
                 </>
               )}
             </p>

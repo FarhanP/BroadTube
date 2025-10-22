@@ -20,7 +20,7 @@ const GptMovieSuggestions = () => {
     );
   }
   return (
-    <div className="container mx-auto flex flex-col gap-10">
+    <div className="container mx-auto flex flex-col mb-6 sm:mb-10 gap-10">
       {gptMovieNames.map((movieName, index) => (
         <MovieList
           key={movieName}

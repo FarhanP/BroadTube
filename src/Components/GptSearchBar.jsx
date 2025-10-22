@@ -3,15 +3,18 @@ import ai from "../utils/Gemini";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
+import LoadingOverlay from "./LoadingOveraly";
 
 const GptsearchBar = () => {
   const searchText = useRef(null);
   const dispatch = useDispatch();
   const [aiResponseErr, setAiResponseErr] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const mediaQuery = window.matchMedia("(max-width: 640px)"); // Tailwind's 'sm' breakpoint
 
   const handleGptSearch = async () => {
+    setLoading(true);
     const value = searchText.current.value;
     console.log("Searching for:", value);
 
@@ -35,11 +38,14 @@ const GptsearchBar = () => {
       setAiResponseErr(false);
     }
     const moviesList = response.text.split(",").map((movie) => movie.trim());
-    console.log("Movies List:", moviesList);
+
     // For each movie name, you can call a function to search and display movies
     const gptMovies = moviesList.map((movie) => searchMovies(movie));
     const movieResults = await Promise.all(gptMovies);
     console.log("Movie Results:", movieResults);
+    if (movieResults.length > 0) {
+      setLoading(false);
+    }
     dispatch(
       addGptMovies({
         gptMoviesResults: movieResults,
@@ -59,6 +65,10 @@ const GptsearchBar = () => {
     const response = await data.json();
     return response.results;
   };
+
+  if (isLoading) {
+    return <LoadingOverlay message="Searching for movies..." />;
+  }
 
   return (
     <div className="flex justify-center items-center mt-20">

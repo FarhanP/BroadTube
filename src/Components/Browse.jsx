@@ -7,12 +7,20 @@ import { usePopularMovies } from "../hooks/usePopularMovies.js";
 import { useUpcoming } from "../hooks/useUpcoming.js";
 import { useSelector } from "react-redux";
 import GptSearch from "./GptSearch.jsx";
+import LoadingOverlay from "./LoadingOveraly.jsx";
 
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-  useGetNowPlaying();
-  usePopularMovies();
-  useUpcoming();
+  const { isLoading: popularLoading } = usePopularMovies();
+  const { isLoading: upcomingLoading } = useUpcoming();
+  const { isLoading: nowPlayingLoading } = useGetNowPlaying();
+
+  const isLoading = popularLoading || upcomingLoading || nowPlayingLoading;
+
+  if (isLoading) {
+    return <LoadingOverlay message="Loading..." />;
+  }
+
   return (
     <div className="relative min-h-[calc(100svh-66px)]">
       <Header />
