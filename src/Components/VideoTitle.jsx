@@ -2,7 +2,7 @@ import React from "react";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const VideoTitle = ({ title, overview }) => {
+const VideoTitle = ({ title, overview, trailerVideo }) => {
   return (
     <div className=" w-screen aspect-video pt-[5%] sm:pt-[15%] px-4 sm:px-26 absolute bg-gradient-to-r from-black text-white">
       <h1 className="font-bold sm:mb-0 mb-3 text-emerald-500 text-2xl sm:text-5xl">
@@ -18,7 +18,18 @@ const VideoTitle = ({ title, overview }) => {
           type="button"
         >
           <FontAwesomeIcon size="1x" icon={faPlay} />
-          <span>Play</span>
+          <a
+            role="button"
+            href={
+              "https://www.youtube.com/embed/" +
+              trailerVideo?.key +
+              "?autoplay=1&mute=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&loop=1"
+            }
+            target="_blank"
+            type="button"
+          >
+            Play
+          </a>
         </button>
         <button
           className="sm:text-lg text-md hover:opacity-90 bg-emerald-600 rounded-lg sm:px-8 px-4 py-2 cursor-pointer"

@@ -16,7 +16,6 @@ const GptsearchBar = () => {
   const handleGptSearch = async () => {
     setLoading(true);
     const value = searchText.current.value;
-    console.log("Searching for:", value);
 
     const gptQuery = `You are an expert in movie recommendations. Your task is to output exactly 5 movie names based on the user's query.
       Rules:

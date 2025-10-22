@@ -5,17 +5,23 @@ import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlaying);
+  const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   const featuredMovie = movies ? movies[0] : null;
   console.log("Featured Movie:", featuredMovie);
 
   if (!featuredMovie) return;
 
   const { original_title, overview, id } = featuredMovie;
+  console.log("MainContainer Movie Details:", featuredMovie);
 
   return (
     <div>
-      <VideoTitle title={original_title} overview={overview} />
-      <VideoBackground movieId={id} />
+      <VideoTitle
+        trailerVideo={trailerVideo}
+        title={original_title}
+        overview={overview}
+      />
+      <VideoBackground trailerVideo={trailerVideo} movieId={id} />
     </div>
   );
 };
