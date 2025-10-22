@@ -8,10 +8,9 @@ import Footer from "./Components/Footer.jsx";
 function App() {
   return (
     <>
-      <div>
+      <div className="min-h-[calc(100svh-66px)]">
         <Provider store={appStore}>
           <Body />
-          <Footer />
         </Provider>
       </div>
     </>
